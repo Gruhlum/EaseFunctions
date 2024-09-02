@@ -2,7 +2,7 @@
   "name": "com.hextecgames.easefunctions",
   "version": "1.0.0",
   "displayName": "EaseFunctions",
-  "description": "My Package",
+  "description": "Contains easing functions for better animations",
   "unity": "2019.1",
   "dependencies": {},
   "author": {
@@ -11,9 +11,9 @@
   "hideInEditor": "false",
   "samples": [
     {
-      "displayName": "Example 1",
-      "description": "Example 1 description",
-      "path": "Samples/Example 1"
+      "displayName": "Example",
+      "description": "Example that shows any possible easing and function combination",
+      "path": "~Samples/Example 1"
     }
   ]
 }
