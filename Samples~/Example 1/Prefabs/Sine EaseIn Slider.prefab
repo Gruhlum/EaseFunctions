@@ -53,9 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easing: 0
   function: 0
-  redColor: {r: 0.8490566, g: 0.3486631, b: 0.22027414, a: 1}
-  greenColor: {r: 0.1792453, g: 0.7169812, b: 0.34608775, a: 1}
-  blueColor: {r: 0.14951938, g: 0.41472465, b: 0.9056604, a: 1}
+  redColor: {r: 0.8679245, g: 0.31691203, b: 0.21698113, a: 1}
+  greenColor: {r: 0.21173012, g: 0.735849, b: 0.2703272, a: 1}
+  blueColor: {r: 0.23335709, g: 0.4254517, b: 0.7169812, a: 1}
   textGUI: {fileID: 3743183051303978370}
   slider: {fileID: 8260370871272825654}
   sliderFill: {fileID: 2565418785170703131}
@@ -229,15 +229,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 645211714348287731, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.b
-      value: 0.22027414
+      value: 0.21698113
       objectReference: {fileID: 0}
     - target: {fileID: 645211714348287731, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.g
-      value: 0.3486631
+      value: 0.31691203
       objectReference: {fileID: 0}
     - target: {fileID: 645211714348287731, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.r
-      value: 0.8490566
+      value: 0.8679245
       objectReference: {fileID: 0}
     - target: {fileID: 2919999566409988718, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Pivot.x
@@ -321,15 +321,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3606030819714647873, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.b
-      value: 0.07342471
+      value: 0.07232704
       objectReference: {fileID: 0}
     - target: {fileID: 3606030819714647873, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.g
-      value: 0.11622103
+      value: 0.10563734
       objectReference: {fileID: 0}
     - target: {fileID: 3606030819714647873, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_Color.r
-      value: 0.28301886
+      value: 0.28930816
       objectReference: {fileID: 0}
     - target: {fileID: 4669739345808449958, guid: 5a68cc17e248c8f45809907d2d991084, type: 3}
       propertyPath: m_SizeDelta.x

@@ -53,9 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   easing: 0
   function: 0
-  redColor: {r: 0.8509804, g: 0.34901962, b: 0.21960784, a: 1}
-  greenColor: {r: 0.18039216, g: 0.7176471, b: 0.34509805, a: 1}
-  blueColor: {r: 0.14901961, g: 0.41568628, b: 0.90588236, a: 1}
+  redColor: {r: 0.8679245, g: 0.31691203, b: 0.21698113, a: 1}
+  greenColor: {r: 0.21173012, g: 0.735849, b: 0.2703272, a: 1}
+  blueColor: {r: 0.23335709, g: 0.4254517, b: 0.7169812, a: 1}
   textGUI: {fileID: 7100775712641317205}
   img: {fileID: 6107710964214400467}
 --- !u!222 &5203296195532838074
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8509804, g: 0.34901962, b: 0.21960784, a: 1}
+  m_Color: {r: 0.8679245, g: 0.31691203, b: 0.21698113, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
