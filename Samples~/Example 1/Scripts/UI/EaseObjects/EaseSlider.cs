@@ -22,10 +22,10 @@ namespace HexTecGames.EasingFunctions.Example.UI
         }
         private void OnValidate()
         {
-            gameObject.name = $"{function} {easing} Slider";
-            textGUI.text = $"{function} {ToSentence(easing.ToString())}";
-            sliderFill.color = GetColor();
-            sliderBackground.color = DarkenColor(sliderFill.color);
+            if (gameObject != null) gameObject.name = $"{function} {easing} Slider";
+            if (textGUI != null) textGUI.text = $"{function} {ToSentence(easing.ToString())}";
+            if (sliderFill != null) sliderFill.color = GetColor();
+            if (sliderBackground != null) sliderBackground.color = DarkenColor(sliderFill.color);
         }
 
         private Color DarkenColor(Color col)

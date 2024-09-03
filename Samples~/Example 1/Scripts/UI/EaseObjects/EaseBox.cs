@@ -19,9 +19,9 @@ namespace HexTecGames.EasingFunctions.Example.UI
         }
         private void OnValidate()
         {
-            img.color = GetColor();
-            gameObject.name = $"{function} {easing} Box";
-            textGUI.text = $"{function} {ToSentence(easing.ToString())}";
+            if (img != null) img.color = GetColor();
+            if (gameObject != null) gameObject.name = $"{function} {easing} Box";
+            if (textGUI != null) textGUI.text = $"{function} {ToSentence(easing.ToString())}";
         }
 
         protected override IEnumerator Animate()
