@@ -22,8 +22,8 @@ namespace HexTecGames.EasingFunctions.Example.UI
         }
         private void OnValidate()
         {
-            if (gameObject != null) gameObject.name = $"{function} {easing} Slider";
-            if (textGUI != null) textGUI.text = $"{function} {ToSentence(easing.ToString())}";
+            if (gameObject != null) gameObject.name = $"{easeFunction.functionType} {easeFunction.easingType} Slider";
+            if (textGUI != null) textGUI.text = $"{easeFunction.functionType} {ToSentence(easeFunction.easingType.ToString())}";
             if (sliderFill != null) sliderFill.color = GetColor();
             if (sliderBackground != null) sliderBackground.color = DarkenColor(sliderFill.color);
         }
@@ -52,7 +52,7 @@ namespace HexTecGames.EasingFunctions.Example.UI
             {
                 timer += Time.deltaTime * speed;
                 timer = Mathf.Min(1, timer);
-                slider.value = Mathf.Lerp(start, end, easeFunction(timer));
+                slider.value = Mathf.Lerp(start, end, easeFunction.GetValue(timer));
                 yield return null;
             }
         }

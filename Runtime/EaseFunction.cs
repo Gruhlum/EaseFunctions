@@ -6,8 +6,11 @@ using UnityEngine;
 namespace HexTecGames.EaseFunctions
 {
     [System.Serializable]
-    public static class EaseFunction
+    public class EaseFunction
     {
+        public EasingType easingType;
+        public FunctionType functionType;
+
         const float c1 = 1.70158f;
         const float c2 = c1 * 1.525f;
         const float c3 = c1 + 1f;
@@ -17,84 +20,99 @@ namespace HexTecGames.EaseFunctions
         const float n1 = 7.5625f;
         const float d1 = 2.75f;
 
-        public static Func<float, float> GetFunction(Easing easing, Function function)
+        private Func<float, float> function;
+
+        private void SetFunction()
         {
-            switch (easing)
+            function = GetFunction(easingType, functionType);
+        }
+        public float GetValue(float percent)
+        {
+            if (function == null)
             {
-                case Easing.EaseIn:
-                    switch (function)
+                SetFunction();
+            }
+            return function(percent);
+        }
+
+        public static Func<float, float> GetFunction(EasingType easingType, FunctionType functionType)
+        {
+            switch (easingType)
+            {
+                case EasingType.EaseIn:
+                    switch (functionType)
                     {
-                        case Function.Sine:
+                        case FunctionType.Sine:
                             return EaseInSine;
-                        case Function.Quad:
+                        case FunctionType.Quad:
                             return EaseInQuad;
-                        case Function.Cubic:
+                        case FunctionType.Cubic:
                             return EaseInCubic;
-                        case Function.Quart:
+                        case FunctionType.Quart:
                             return EaseInQuart;
-                        case Function.Quint:
+                        case FunctionType.Quint:
                             return EaseInQuint;
-                        case Function.Expo:
+                        case FunctionType.Expo:
                             return EaseInExpo;
-                        case Function.Circ:
+                        case FunctionType.Circ:
                             return EaseInCirc;
-                        case Function.Back:
+                        case FunctionType.Back:
                             return EaseInBack;
-                        case Function.Elastic:
+                        case FunctionType.Elastic:
                             return EaseInElastic;
-                        case Function.Bounce:
+                        case FunctionType.Bounce:
                             return EaseInBounce;
                         default:
                             return null;
                     }
-                case Easing.EaseOut:
-                    switch (function)
+                case EasingType.EaseOut:
+                    switch (functionType)
                     {
-                        case Function.Sine:
+                        case FunctionType.Sine:
                             return EaseOutSine;
-                        case Function.Quad:
+                        case FunctionType.Quad:
                             return EaseOutQuad;
-                        case Function.Cubic:
+                        case FunctionType.Cubic:
                             return EaseOutCubic;
-                        case Function.Quart:
+                        case FunctionType.Quart:
                             return EaseOutQuart;
-                        case Function.Quint:
+                        case FunctionType.Quint:
                             return EaseOutQuint;
-                        case Function.Expo:
+                        case FunctionType.Expo:
                             return EaseOutExpo;
-                        case Function.Circ:
+                        case FunctionType.Circ:
                             return EaseOutCirc;
-                        case Function.Back:
+                        case FunctionType.Back:
                             return EaseOutBack;
-                        case Function.Elastic:
+                        case FunctionType.Elastic:
                             return EaseOutElastic;
-                        case Function.Bounce:
+                        case FunctionType.Bounce:
                             return EaseOutBounce;
                         default:
                             return null;
                     }
-                case Easing.EaseInOut:
-                    switch (function)
+                case EasingType.EaseInOut:
+                    switch (functionType)
                     {
-                        case Function.Sine:
+                        case FunctionType.Sine:
                             return EaseInOutSine;
-                        case Function.Quad:
+                        case FunctionType.Quad:
                             return EaseInOutQuad;
-                        case Function.Cubic:
+                        case FunctionType.Cubic:
                             return EaseInOutCubic;
-                        case Function.Quart:
+                        case FunctionType.Quart:
                             return EaseInOutQuart;
-                        case Function.Quint:
+                        case FunctionType.Quint:
                             return EaseInOutQuint;
-                        case Function.Expo:
+                        case FunctionType.Expo:
                             return EaseInOutExpo;
-                        case Function.Circ:
+                        case FunctionType.Circ:
                             return EaseInOutCirc;
-                        case Function.Back:
+                        case FunctionType.Back:
                             return EaseInOutBack;
-                        case Function.Elastic:
+                        case FunctionType.Elastic:
                             return EaseInOutElastic;
-                        case Function.Bounce:
+                        case FunctionType.Bounce:
                             return EaseInOutBounce;
                         default:
                             return null;
@@ -103,9 +121,9 @@ namespace HexTecGames.EaseFunctions
                     return null;
             }
         }
-        public static float GetValue(Easing easing, Function function, float percent)
+        public static float GetValue(EasingType easingType, FunctionType functionType, float percent)
         {
-            return GetFunction(easing, function).Invoke(percent);
+            return GetFunction(easingType, functionType).Invoke(percent);
         }
         public static float EaseInSine(float x)
         {

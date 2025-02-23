@@ -20,8 +20,8 @@ namespace HexTecGames.EasingFunctions.Example.UI
         private void OnValidate()
         {
             if (img != null) img.color = GetColor();
-            if (gameObject != null) gameObject.name = $"{function} {easing} Box";
-            if (textGUI != null) textGUI.text = $"{function} {ToSentence(easing.ToString())}";
+            if (gameObject != null) gameObject.name = $"{easeFunction.functionType} {easeFunction.easingType} Box";
+            if (textGUI != null) textGUI.text = $"{easeFunction.functionType} {ToSentence(easeFunction.easingType.ToString())}";
         }
 
         protected override IEnumerator Animate()
@@ -45,7 +45,7 @@ namespace HexTecGames.EasingFunctions.Example.UI
             {
                 timer += Time.deltaTime * speed;
                 timer = Mathf.Min(1, timer);
-                gameObject.transform.position = Vector3.Lerp(start, end, easeFunction(timer));
+                gameObject.transform.position = Vector3.Lerp(start, end, easeFunction.GetValue(timer));
                 yield return null;
             }
         }

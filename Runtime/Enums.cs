@@ -4,6 +4,6 @@ using UnityEngine;
 
 namespace HexTecGames.EaseFunctions
 {
-    public enum Easing { EaseIn, EaseOut, EaseInOut }
-    public enum Function { Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic, Bounce }
+    public enum EasingType { EaseIn, EaseOut, EaseInOut }
+    public enum FunctionType { Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic, Bounce }
 }

@@ -10,22 +10,14 @@ namespace HexTecGames.EasingFunctions.Example.UI
     public abstract class EaseObject : MonoBehaviour
     {
         [Space]
-        [SerializeField] protected Easing easing = default;
-        [SerializeField] protected Function function = default;
+        [SerializeField] protected EaseFunction easeFunction = default;
         [Space]
         [SerializeField] private Color redColor = default;
         [SerializeField] private Color greenColor = default;
         [SerializeField] private Color blueColor = default;
 
-        protected Func<float, float> easeFunction;
-
         public static float speed = 0.5f;
 
-        protected virtual void Awake()
-        {
-            easeFunction = EaseFunction.GetFunction(easing, function);
-            
-        }
         protected virtual void OnEnable()
         {
             StartCoroutine(Animate());
@@ -38,13 +30,13 @@ namespace HexTecGames.EasingFunctions.Example.UI
         }
         protected Color GetColor()
         {
-            switch (easing)
+            switch (easeFunction.easingType)
             {
-                case Easing.EaseIn:
+                case EasingType.EaseIn:
                     return redColor;
-                case Easing.EaseOut:
+                case EasingType.EaseOut:
                     return greenColor;
-                case Easing.EaseInOut:
+                case EasingType.EaseInOut:
                     return blueColor;
                 default:
                     return Color.white;

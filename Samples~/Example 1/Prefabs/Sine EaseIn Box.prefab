@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fca2cb6b0c4934f8a64d5a6176c817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easing: 0
-  function: 0
+  easeFunction:
+    easingType: 0
+    functionType: 0
   redColor: {r: 0.8679245, g: 0.31691203, b: 0.21698113, a: 1}
   greenColor: {r: 0.21173012, g: 0.735849, b: 0.2703272, a: 1}
   blueColor: {r: 0.23335709, g: 0.4254517, b: 0.7169812, a: 1}
