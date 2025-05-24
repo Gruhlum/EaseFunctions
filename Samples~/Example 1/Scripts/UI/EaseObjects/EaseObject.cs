@@ -20,9 +20,14 @@ namespace HexTecGames.EasingFunctions.Example.UI
 
         protected virtual void OnEnable()
         {
-            StartCoroutine(Animate());
+            StartCoroutine(AnimateDelayed());
         }
 
+        private IEnumerator AnimateDelayed()
+        {
+            yield return new WaitForSeconds(0.02f);
+            StartCoroutine(Animate());
+        }
         protected abstract IEnumerator Animate();
         protected string ToSentence(string input)
         {

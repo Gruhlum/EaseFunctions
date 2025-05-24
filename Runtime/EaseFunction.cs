@@ -26,6 +26,10 @@ namespace HexTecGames.EaseFunctions
         {
             function = GetFunction(easingType, functionType);
         }
+        public Func<float, float> GetFunction()
+        {
+            return GetFunction(easingType, functionType);
+        }
         public float GetValue(float percent)
         {
             if (function == null)
@@ -62,6 +66,8 @@ namespace HexTecGames.EaseFunctions
                             return EaseInElastic;
                         case FunctionType.Bounce:
                             return EaseInBounce;
+                        case FunctionType.Linear:
+                            return Linear;
                         default:
                             return null;
                     }
@@ -88,6 +94,8 @@ namespace HexTecGames.EaseFunctions
                             return EaseOutElastic;
                         case FunctionType.Bounce:
                             return EaseOutBounce;
+                        case FunctionType.Linear:
+                            return Linear;
                         default:
                             return null;
                     }
@@ -114,6 +122,8 @@ namespace HexTecGames.EaseFunctions
                             return EaseInOutElastic;
                         case FunctionType.Bounce:
                             return EaseInOutBounce;
+                        case FunctionType.Linear:
+                            return Linear;
                         default:
                             return null;
                     }
@@ -137,7 +147,10 @@ namespace HexTecGames.EaseFunctions
         {
             return -(MathF.Cos(MathF.PI * x) - 1f) / 2f;
         }
-
+        public static float Linear(float x)
+        {
+            return x;
+        }
         public static float EaseInQuad(float x)
         {
             return x * x;
