@@ -1,0 +1,18 @@
+{
+    "name": "HexTecGames.EaseFunctions.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:86858c3bc22377a46acba36d6aaff438"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
