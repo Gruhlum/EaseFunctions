@@ -20,6 +20,61 @@ namespace HexTecGames.EaseFunctions
         const float n1 = 7.5625f;
         const float d1 = 2.75f;
 
+        // public enum FunctionType { Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic, Bounce, Linear }
+
+        private static Dictionary<EasingType, Dictionary<FunctionType, Func<float, float>>> methodDict
+            = new Dictionary<EasingType, Dictionary<FunctionType, Func<float, float>>>()
+        {
+            {
+                EasingType.EaseIn, new Dictionary<FunctionType, Func<float, float>>()
+                {
+                    { FunctionType.Sine, EaseInSine },
+                    { FunctionType.Quad, EaseInQuad },
+                    { FunctionType.Cubic, EaseInCubic },
+                    { FunctionType.Quart, EaseInQuart },
+                    { FunctionType.Quint, EaseInQuint },
+                    { FunctionType.Expo, EaseInExpo },
+                    { FunctionType.Circ, EaseInCirc },
+                    { FunctionType.Back, EaseInBack },
+                    { FunctionType.Elastic, EaseInElastic },
+                    { FunctionType.Bounce, EaseInBounce },
+                    { FunctionType.Linear, Linear },
+                }
+            },
+                {
+                EasingType.EaseOut, new Dictionary<FunctionType, Func<float, float>>()
+                {
+                    { FunctionType.Sine, EaseOutSine },
+                    { FunctionType.Quad, EaseOutQuad },
+                    { FunctionType.Cubic, EaseOutCubic },
+                    { FunctionType.Quart, EaseOutQuart },
+                    { FunctionType.Quint, EaseOutQuint },
+                    { FunctionType.Expo, EaseOutExpo },
+                    { FunctionType.Circ, EaseOutCirc },
+                    { FunctionType.Back, EaseOutBack },
+                    { FunctionType.Elastic, EaseOutElastic },
+                    { FunctionType.Bounce, EaseOutBounce },
+                    { FunctionType.Linear, Linear },
+                }
+            },
+                {
+                EasingType.EaseInOut, new Dictionary<FunctionType, Func<float, float>>()
+                {
+                    { FunctionType.Sine, EaseInOutSine },
+                    { FunctionType.Quad, EaseInOutQuad },
+                    { FunctionType.Cubic, EaseInOutCubic },
+                    { FunctionType.Quart, EaseInOutQuart },
+                    { FunctionType.Quint, EaseInOutQuint },
+                    { FunctionType.Expo, EaseInOutExpo },
+                    { FunctionType.Circ, EaseInOutCirc },
+                    { FunctionType.Back, EaseInOutBack },
+                    { FunctionType.Elastic, EaseInOutElastic },
+                    { FunctionType.Bounce, EaseInOutBounce },
+                    { FunctionType.Linear, Linear },
+                }
+            }
+        };
+
         private Func<float, float> function;
 
         private void SetFunction()
@@ -32,104 +87,31 @@ namespace HexTecGames.EaseFunctions
         }
         public float GetValue(float percent)
         {
+#if UNITY_EDITOR
+            if (!Application.isPlaying && function == null)
+            {
+                SetFunction();
+            }
+#else
             if (function == null)
             {
                 SetFunction();
             }
+#endif
             return function(percent);
         }
 
         public static Func<float, float> GetFunction(EasingType easingType, FunctionType functionType)
         {
-            switch (easingType)
+            if (methodDict.TryGetValue(easingType, out Dictionary<FunctionType, Func<float, float>> subDict))
             {
-                case EasingType.EaseIn:
-                    switch (functionType)
-                    {
-                        case FunctionType.Sine:
-                            return EaseInSine;
-                        case FunctionType.Quad:
-                            return EaseInQuad;
-                        case FunctionType.Cubic:
-                            return EaseInCubic;
-                        case FunctionType.Quart:
-                            return EaseInQuart;
-                        case FunctionType.Quint:
-                            return EaseInQuint;
-                        case FunctionType.Expo:
-                            return EaseInExpo;
-                        case FunctionType.Circ:
-                            return EaseInCirc;
-                        case FunctionType.Back:
-                            return EaseInBack;
-                        case FunctionType.Elastic:
-                            return EaseInElastic;
-                        case FunctionType.Bounce:
-                            return EaseInBounce;
-                        case FunctionType.Linear:
-                            return Linear;
-                        default:
-                            return null;
-                    }
-                case EasingType.EaseOut:
-                    switch (functionType)
-                    {
-                        case FunctionType.Sine:
-                            return EaseOutSine;
-                        case FunctionType.Quad:
-                            return EaseOutQuad;
-                        case FunctionType.Cubic:
-                            return EaseOutCubic;
-                        case FunctionType.Quart:
-                            return EaseOutQuart;
-                        case FunctionType.Quint:
-                            return EaseOutQuint;
-                        case FunctionType.Expo:
-                            return EaseOutExpo;
-                        case FunctionType.Circ:
-                            return EaseOutCirc;
-                        case FunctionType.Back:
-                            return EaseOutBack;
-                        case FunctionType.Elastic:
-                            return EaseOutElastic;
-                        case FunctionType.Bounce:
-                            return EaseOutBounce;
-                        case FunctionType.Linear:
-                            return Linear;
-                        default:
-                            return null;
-                    }
-                case EasingType.EaseInOut:
-                    switch (functionType)
-                    {
-                        case FunctionType.Sine:
-                            return EaseInOutSine;
-                        case FunctionType.Quad:
-                            return EaseInOutQuad;
-                        case FunctionType.Cubic:
-                            return EaseInOutCubic;
-                        case FunctionType.Quart:
-                            return EaseInOutQuart;
-                        case FunctionType.Quint:
-                            return EaseInOutQuint;
-                        case FunctionType.Expo:
-                            return EaseInOutExpo;
-                        case FunctionType.Circ:
-                            return EaseInOutCirc;
-                        case FunctionType.Back:
-                            return EaseInOutBack;
-                        case FunctionType.Elastic:
-                            return EaseInOutElastic;
-                        case FunctionType.Bounce:
-                            return EaseInOutBounce;
-                        case FunctionType.Linear:
-                            return Linear;
-                        default:
-                            return null;
-                    }
-                default:
-                    return null;
+                if (subDict.TryGetValue(functionType, out Func<float, float> method))
+                {
+                    return method;
+                }
             }
+            Debug.Log($"Could not find method for {easingType} {functionType}");
+            return null;
         }
         public static float GetValue(EasingType easingType, FunctionType functionType, float percent)
         {
@@ -137,11 +119,11 @@ namespace HexTecGames.EaseFunctions
         }
         public static float EaseInSine(float x)
         {
-            return 1f - Mathf.Cos((x * Mathf.PI) / 2f);
+            return 1f - MathF.Cos((x * MathF.PI) / 2f);
         }
         public static float EaseOutSine(float x)
         {
-            return Mathf.Sin((x * Mathf.PI) / 2f);
+            return MathF.Sin((x * MathF.PI) / 2f);
         }
         public static float EaseInOutSine(float x)
         {
@@ -251,12 +233,12 @@ namespace HexTecGames.EaseFunctions
         }
 
         public static float EaseInElastic(float x)
-        {          
-             return x == 0f
-             ? 0f
-             : x == 1f
-             ? 1f
-             : -MathF.Pow(2f, 10f * x - 10f) * MathF.Sin((x * 10f - 10.75f) * c4);
+        {
+            return x == 0f
+            ? 0f
+            : x == 1f
+            ? 1f
+            : -MathF.Pow(2f, 10f * x - 10f) * MathF.Sin((x * 10f - 10.75f) * c4);
         }
         public static float EaseOutElastic(float x)
         {
