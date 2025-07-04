@@ -20,8 +20,6 @@ namespace HexTecGames.EaseFunctions
         const float n1 = 7.5625f;
         const float d1 = 2.75f;
 
-        // public enum FunctionType { Sine, Quad, Cubic, Quart, Quint, Expo, Circ, Back, Elastic, Bounce, Linear }
-
         private static Dictionary<EasingType, Dictionary<FunctionType, Func<float, float>>> methodDict
             = new Dictionary<EasingType, Dictionary<FunctionType, Func<float, float>>>()
         {
@@ -87,17 +85,10 @@ namespace HexTecGames.EaseFunctions
         }
         public float GetValue(float percent)
         {
-#if UNITY_EDITOR
             if (!Application.isPlaying && function == null)
             {
                 SetFunction();
             }
-#else
-            if (function == null)
-            {
-                SetFunction();
-            }
-#endif
             return function(percent);
         }
 
