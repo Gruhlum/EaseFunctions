@@ -85,7 +85,11 @@ namespace HexTecGames.EaseFunctions
         }
         public float GetValue(float percent)
         {
-            if (!Application.isPlaying && function == null)
+            if (!Application.isPlaying)
+            {
+                GetFunction()(percent);
+            }
+            else if (function == null)
             {
                 SetFunction();
             }
