@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace HexTecGames.EaseFunctions
 {
     public enum EasingType { EaseIn, EaseOut, EaseInOut }

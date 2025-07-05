@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using UnityEngine.UIElements;
 
 namespace HexTecGames.EaseFunctions.Editor
 {
@@ -24,9 +21,10 @@ namespace HexTecGames.EaseFunctions.Editor
             container.style.flexDirection = FlexDirection.Row;
 
             functionTypeProp = property.FindPropertyRelative("functionType");
-            PropertyField functionField = new PropertyField(functionTypeProp);
-
-            functionField.label = string.Empty;
+            PropertyField functionField = new PropertyField(functionTypeProp)
+            {
+                label = string.Empty
+            };
             functionField.style.width = new StyleLength(80);
 
             functionField.BindProperty(functionTypeProp);
@@ -35,8 +33,10 @@ namespace HexTecGames.EaseFunctions.Editor
             container.Add(functionField);
 
             SerializedProperty easingProp = property.FindPropertyRelative("easingType");
-            easingField = new PropertyField(easingProp);
-            easingField.label = string.Empty;
+            easingField = new PropertyField(easingProp)
+            {
+                label = string.Empty
+            };
             easingField.style.width = new StyleLength(90);
             easingField.BindProperty(easingProp);
             container.Add(easingField);
