@@ -25,20 +25,21 @@ namespace HexTecGames.EasingFunctions.Example.UI
             if (animationPoint != null) animationPoint.color = GetColor();
             if (gameObject != null) gameObject.name = $"{easeFunction.functionType} {easeFunction.easingType} Box";
             if (textGUI != null) textGUI.text = $"{easeFunction.functionType} {ToSentence(easeFunction.easingType.ToString())}";
+
+            GenerateLine();
+        }
+
+        private void GenerateLine()
+        {
+            lineRenderer.enabled = true;
+            Vector3[] positions = GetPositions();
+            animationPoint.transform.position = positions[0];
+            lineRenderer.SetPositions(positions);
         }
 
         protected override IEnumerator Animate()
         {
-            lineRenderer.enabled = true;
-            Vector3[] positions = new Vector3[totalPoints];
-            // Debug.Log(Camera.main.ScreenToWorldPoint(transform.position));
-            for (int i = 0; i < totalPoints; i++)
-            {
-                //positions[i] = GetPoint(i / (float)totalPoints) + Camera.main.ScreenToWorldPoint(transform.position);
-                positions[i] = transform.position + (Vector3)GetPoint(i / (float)totalPoints) + (Vector3)offset;
-            }
-
-            lineRenderer.SetPositions(positions);
+            Vector3[] positions = GetPositions();
 
             int direction = 1;
             int currentIndex = 0;
@@ -47,7 +48,6 @@ namespace HexTecGames.EasingFunctions.Example.UI
             animationPoint.transform.position = currentTarget;
 
             float segmentProgress = 0;
-
 
             while (true)
             {
@@ -78,6 +78,16 @@ namespace HexTecGames.EasingFunctions.Example.UI
             }
         }
 
+        private Vector3[] GetPositions()
+        {
+            Vector3[] positions = new Vector3[totalPoints];
+            for (int i = 0; i < totalPoints; i++)
+            {
+                positions[i] = transform.position + (Vector3)GetPoint(i / (float)totalPoints) + (Vector3)offset;
+            }
+
+            return positions;
+        }
 
         private Vector2 GetPoint(float progress)
         {
