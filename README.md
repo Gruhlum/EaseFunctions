@@ -12,6 +12,10 @@
 
 ## How To Use
 
-<img src="Documentation/Media/method1.png">
-
-<img src="Documentation/Media/method2.png">
+```csharp
+    slider.value = easeFunction.GetValue(Time.time);
+```
+or
+```csharp
+    slider.value = EaseFunction.EaseOutSine(Time.time);
+```
