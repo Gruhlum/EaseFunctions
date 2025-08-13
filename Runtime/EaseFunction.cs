@@ -86,7 +86,7 @@ namespace HexTecGames.EaseFunctions
         {
             if (Application.isEditor)
             {
-               return GetFunction()(percent);
+                return GetFunction()(percent);
             }
             else if (function == null)
             {
