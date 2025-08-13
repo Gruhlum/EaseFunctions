@@ -10,12 +10,24 @@
 
 <img src="Documentation/Media/boxes.gif">
 
+## Inspector Drawer
+
+![Inspector_Screenshot](Documentation/Media/ease_drawer.png)
+
 ## How To Use
 
+Inspector Example:
 ```csharp
-    slider.value = easeFunction.GetValue(Time.time);
+    public EaseFunction easeFunction;
+    void Update()
+    {
+        slider.value = easeFunction.GetValue(Time.time);
+    }
 ```
-or
+Static Example:
 ```csharp
-    slider.value = EaseFunction.EaseOutSine(Time.time);
+    void Update()
+    {
+        slider.value = EaseFunction.EaseOutSine(Time.time);
+    }
 ```
