@@ -1,6 +1,6 @@
 {
   "name": "com.hextecgames.easefunctions",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "displayName": "EaseFunctions",
   "description": "Contains Collection of easing methods",
   "unity": "2022.1",

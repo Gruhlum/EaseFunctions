@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace HexTecGames.EaseFunctions
 {
@@ -281,6 +282,39 @@ namespace HexTecGames.EaseFunctions
             return x < 0.5f
             ? (1f - EaseOutBounce(1f - (2f * x))) / 2f
             : (1f + EaseOutBounce((2f * x) - 1f)) / 2f;
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            if (obj is EaseFunction other)
+            {
+                return this.easingType == other.easingType &&
+                       this.functionType == other.functionType;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(easingType, functionType);
+        }
+
+        public static bool operator ==(EaseFunction a, EaseFunction b)
+        {
+            if (ReferenceEquals(a, b)) return true;
+            if (a is null || b is null) return false;
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(EaseFunction a, EaseFunction b)
+        {
+            return !(a == b);
+        }
+
+        public override string ToString()
+        {
+            return $"{easingType} {functionType}";
         }
     }
 }
