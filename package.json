@@ -13,5 +13,6 @@
       "description": "Example that shows any possible easing and function combination",
       "path": "Samples~/Example 1"
     }
-  ]
+  ],
+  "hideInEditor": false
 }
