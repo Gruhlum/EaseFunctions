@@ -11,7 +11,14 @@ namespace HexTecGames.EaseFunctions.Editor
             label = EditorGUI.BeginProperty(position, label, property);
             Rect contentRect = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
             GUIContent[] labels = new[] { new GUIContent(string.Empty), new GUIContent(string.Empty) };
-            SerializedProperty[] properties = new[] { property.FindPropertyRelative("easingType"), property.FindPropertyRelative("functionType") };
+
+            var functionType = property.FindPropertyRelative("functionType");
+            var easingType = property.FindPropertyRelative("easingType");
+            if (functionType.enumValueIndex == (int)FunctionType.Linear)
+            {
+                easingType = null;
+            }
+            SerializedProperty[] properties = new[] { functionType, easingType };
             DrawMultiplePropertyFields(contentRect, labels, properties);
 
             EditorGUI.EndProperty();
@@ -32,7 +39,10 @@ namespace HexTecGames.EaseFunctions.Editor
             for (int i = 0; i < propsCount; i++)
             {
                 EditorGUIUtility.labelWidth = EditorStyles.label.CalcSize(subLabels[i]).x + 2;
-                EditorGUI.PropertyField(contentPos, props[i], subLabels[i]);
+                if (props[i] != null)
+                {
+                    EditorGUI.PropertyField(contentPos, props[i], subLabels[i]);
+                }
                 contentPos.x += width + SubLabelSpacing;
             }
 
