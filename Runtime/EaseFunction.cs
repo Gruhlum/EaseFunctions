@@ -75,6 +75,14 @@ namespace HexTecGames.EaseFunctions
 
         private Func<float, float> function;
 
+        public EaseFunction() { }
+
+        public EaseFunction(EasingType easingType, FunctionType functionType)
+        {
+            this.easingType = easingType;
+            this.functionType = functionType;
+        }
+
         private void SetFunction()
         {
             function = GetFunction(easingType, functionType);
