@@ -104,6 +104,19 @@ namespace HexTecGames.EaseFunctions
             return function(percent);
         }
 
+        public static EasingType GetReverseEasing(EasingType easing)
+        {
+            if (easing == EasingType.EaseIn)
+            {
+                return EasingType.EaseOut;
+            }
+            if (easing == EasingType.EaseOut)
+            {
+                return EasingType.EaseIn;
+            }
+            else return easing;
+        }
+
         public static Func<float, float> GetFunction(EasingType easingType, FunctionType functionType)
         {
             if (methodDict.TryGetValue(easingType, out Dictionary<FunctionType, Func<float, float>> subDict))
