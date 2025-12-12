@@ -17,6 +17,8 @@ namespace HexTecGames.EaseFunctions
         private const float c4 = 2f * MathF.PI / 3f;
         private const float c5 = 2f * MathF.PI / 4.5f;
 
+        const float amplitude = 6f;
+
         private const float n1 = 7.5625f;
         private const float d1 = 2.75f;
 
@@ -149,8 +151,6 @@ namespace HexTecGames.EaseFunctions
         }
         public static float EaseOutOvershoot(float x)
         {
-            const float amplitude = 10f;
-
             float t = x;
             float oscillation =
                 amplitude *
@@ -162,7 +162,6 @@ namespace HexTecGames.EaseFunctions
         }
         public static float EaseInOutOvershoot(float x)
         {
-            const float amplitude = 5f;
             const float frequency = 3f;    // how many swings
                                            // Centered time: -1..+1
             float t = (x * 2f) - 1f;
@@ -172,7 +171,7 @@ namespace HexTecGames.EaseFunctions
 
             // Oscillation that is guaranteed to be 0 at x=0 and x=1
             float oscillation =
-                amplitude *
+                (amplitude / 2f) *
                 MathF.Sin(t * frequency) *
                 MathF.Exp(-MathF.Abs(t)) *
                 u * (1f - u);   // <-- THIS fixes the endpoint issue
