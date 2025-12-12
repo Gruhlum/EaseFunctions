@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -36,6 +36,7 @@ namespace HexTecGames.EaseFunctions
                     { FunctionType.Back, EaseInBack },
                     { FunctionType.Elastic, EaseInElastic },
                     { FunctionType.Bounce, EaseInBounce },
+                    { FunctionType.Overshoot, EaseInOvershoot },
                     { FunctionType.Linear, Linear },
                 }
             },
@@ -52,6 +53,7 @@ namespace HexTecGames.EaseFunctions
                     { FunctionType.Back, EaseOutBack },
                     { FunctionType.Elastic, EaseOutElastic },
                     { FunctionType.Bounce, EaseOutBounce },
+                    { FunctionType.Overshoot, EaseOutOvershoot },
                     { FunctionType.Linear, Linear },
                 }
             },
@@ -68,6 +70,7 @@ namespace HexTecGames.EaseFunctions
                     { FunctionType.Back, EaseInOutBack },
                     { FunctionType.Elastic, EaseInOutElastic },
                     { FunctionType.Bounce, EaseInOutBounce },
+                    { FunctionType.Overshoot, EaseInOutOvershoot },
                     { FunctionType.Linear, Linear },
                 }
             }
@@ -132,6 +135,48 @@ namespace HexTecGames.EaseFunctions
         public static float GetValue(EasingType easingType, FunctionType functionType, float percent)
         {
             return GetFunction(easingType, functionType).Invoke(percent);
+        }
+
+
+        public static float EaseInOvershoot(float x)
+        {
+            // Time-reverse EaseOut and mirror vertically so it overshoots into the negative.
+            float y = EaseOutOvershoot(1f - x);
+
+            // y now goes from 1 → 0 with overshoot above 1.
+            // We want 0 → 1 with overshoot below 0, so mirror around 0.5:
+            return 1f - y;
+        }
+        public static float EaseOutOvershoot(float x)
+        {
+            const float amplitude = 10f;
+
+            float t = x;
+            float oscillation =
+                amplitude *
+                MathF.Sin(t) *
+                MathF.Exp(-t) *
+                t * (1f - t);
+
+            return x + oscillation;
+        }
+        public static float EaseInOutOvershoot(float x)
+        {
+            const float amplitude = 5f;
+            const float frequency = 3f;    // how many swings
+                                           // Centered time: -1..+1
+            float t = (x * 2f) - 1f;
+
+            // Convert to 0..1 for envelope
+            float u = (t + 1f) * 0.5f;
+
+            // Oscillation that is guaranteed to be 0 at x=0 and x=1
+            float oscillation =
+                amplitude *
+                MathF.Sin(t * frequency) *
+                MathF.Exp(-MathF.Abs(t)) *
+                u * (1f - u);   // <-- THIS fixes the endpoint issue
+            return x + oscillation;
         }
         public static float EaseInSine(float x)
         {
